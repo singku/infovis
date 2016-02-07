@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Liang_Tang_HW1</title>
+        <style>
+            body {
+                font-family: arial;
+            }
+            .title {
+                background-color: black;
+                color: white;
+                font-weight:bolder;
+                font-size: 34;
+            }
+            .countries {
+                font-weight: bolder;
+            }
+            ul {
+                padding: 0px;
+            }
+            li {
+                list-style: none;
+				font-size: 19;
+            }
+			li:hover {
+				background-color: black;
+				color: white;
+				cursor: pointer;
+			}
+        </style>
+    </head>
+    <body>
+        <h1 class="title">GapiMinder-Wealth and Health of Nations</h1>
+        <div id="contents">
+            <h2 class="countries">Countries(Duplicate input will not be accepted)</h2>
+            <lable>Name</lable>
+            <input type="text" id="new_country"/>
+            <input type="button" value="Add" onclick="addCountry();"/>
+            <input type="button" value="Clear" onclick="clearCountry();"/>
+            <hr></hr>
+            <ul id="country_list">
+            </ul>
+        </div>
+    </body>
+    <script>
+        
+        function clearCountry() {
+            var list = document.getElementById("country_list");
+            if (list.firstElementChild && confirm("Are You Sure to Clear All Record?")) {
+                document.getElementById("country_list").innerHTML = "";
+            }
+        }
+        function addCountry() {
+            var newCountry = document.getElementById("new_country").value;
+            if (newCountry == null || newCountry =="") {
+                return;
+            }
+            var list = document.getElementById("country_list");
+            var children = list.childNodes;
+            for (var i = 0; i < children.length; i++) {
+                if (newCountry == children.item(i).innerHTML) {
+                    return;
+                }
+            }                             
+
+            var newEntry = document.createElement("li");
+            newEntry.innerHTML = newCountry;
+            list.appendChild(newEntry);
+        }
+    </script>
+</html>
